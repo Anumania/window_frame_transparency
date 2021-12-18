@@ -109,10 +109,17 @@ dllg bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const ch
 	//
 	wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)wndproc_hook);
 
+	
 	// link the two:
 	WindowFrameCall(WindowFrameCall_t::SetStdOut, (LPARAM)GetStdHandle(STD_OUTPUT_HANDLE));
 	SetWindowFramePair(frame_hwnd, game_hwnd);
 	SetWindowFramePair(game_hwnd, frame_hwnd);
+	//SetWindowLongW(game_hwnd, GWL_EXSTYLE, WS_EX_LAYERED);
+	//SetLayeredWindowAttributes(game_hwnd, RGB(0, 0, 0), 0, LWA_COLORKEY);
+
+	SetWindowLongW(frame_hwnd, GWL_EXSTYLE, WS_EX_LAYERED);
+	SetLayeredWindowAttributes(frame_hwnd, RGB(153, 153, 0), 0, LWA_COLORKEY);
+
 	frame_bound = true;
 	window_frame_set_rect_impl(x, y, w, h, true);
 	frame_bound = false;

@@ -45,6 +45,8 @@ bool window_frame_set_visible_impl(bool show, bool setvis) {
 	}
 	SetFocus(hwnd);
 	frame_bound = show;
+	SetWindowLongW(hwnd, GWL_EXSTYLE, WS_EX_LAYERED);
+	SetLayeredWindowAttributes(hwnd, RGB(153, 153, 0), 0, LWA_COLORKEY);
 	return true;
 }
 dllx double window_frame_set_visible_raw(double visible) {
