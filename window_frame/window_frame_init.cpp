@@ -119,9 +119,10 @@ dllg bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const ch
 
 	SetWindowLongW(frame_hwnd, GWL_EXSTYLE, WS_EX_LAYERED);
 	//bool a = SetLayeredWindowAttributes(frame_hwnd, RGB(153, 153, 0), 0, LWA_COLORKEY);
-	bool a = SetLayeredWindowAttributes(frame_hwnd, RGB(0, 0, 0), 0, LWA_COLORKEY);
+	bool a = SetLayeredWindowAttributes(frame_hwnd, RGB(255, 255, 255), 0.5, LWA_COLORKEY);
 
 	trace("yo im here");
+	trace("%i", GetLastError());
 	if (!a) {
 		trace("error happened");
 		trace("%i",GetLastError());
@@ -129,7 +130,7 @@ dllg bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const ch
 	else {
 		trace("no error");
 	}
-
+	trace("we ballin");
 	frame_bound = true;
 	window_frame_set_rect_impl(x, y, w, h, true);
 	frame_bound = false;
